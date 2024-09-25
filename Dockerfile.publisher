@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /app
+
+COPY src/Publisher/ src/Publisher/
+COPY ["NuGet.config", "src/Publisher/Protocol.Publisher.Presentation/"]
+COPY ["src/Shared/", "src/Shared/"]
+
+RUN dotnet restore "src/Publisher/Protocol.Publisher.Presentation/Protocol.Publisher.Presentation.csproj"
+RUN dotnet publish -c Release "src/Publisher/Protocol.Publisher.Presentation/Protocol.Publisher.Presentation.csproj" -o publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "Protocol.Publisher.Presentation.dll"]

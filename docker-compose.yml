@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: FileServiceDb
+    volumes:
+      - mongo-data:/data/db
+      - ./init-mongo/:/docker-entrypoint-initdb.d/
+
+  publisher:
+    build:
+      context: ./
+      dockerfile: Dockerfile.publisher
+    container_name: publisher
+    ports:
+        - "5000:80"
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      FILE_SERVICE_API: 'http://fileservice'
+    command: ["dotnet", "Protocol.Publisher.Presentation.dll"]
+    restart: on-failure
+
+  consumer:
+    build:
+      context: ./
+      dockerfile: Dockerfile.consumer
+    container_name: consumer
+    ports:
+        - "5008:80"
+    depends_on:
+      - rabbitmq
+    environment:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      PROTOCOL_API: 'http://protocol'
+    command: ["dotnet", "Protocol.Consumer.Worker.dll"]
+    restart: on-failure
+  
+  fileservice:
+    build:
+      context: ./
+      dockerfile: Dockerfile.file
+    container_name: fileservice
+    environment:
+      FILE_STORAGE_BASE_PATH: 'app/Photos'
+      MONGODB_CONNECTION_STRING: 'mongodb://mongo'
+      MONGODB_DATABASE: FileServiceDb
+    depends_on:
+      - mongo
+    ports:
+      - "5001:80"
+    volumes:
+      - shared-data:/app/Photos
+      - ./shared-images:/app/Photos
+
+volumes:
+  shared-data:
+  mongo-data:  

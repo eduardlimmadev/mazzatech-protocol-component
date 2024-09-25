@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Protocol.Publisher.Infrastructure\Protocol.Publisher.Infrastructure.csproj" />
+    <ProjectReference Include="..\Protocol.Publisher.Service\Protocol.Publisher.Service.csproj" />
+    <ProjectReference Include="..\Protocol.Publisher.Shared\Protocol.Publisher.Shared.csproj" />
+    <ProjectReference Include="..\..\Shared\Protocol.Shared.Domain\Protocol.Shared.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

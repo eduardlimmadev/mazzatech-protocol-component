@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>3aa05360-0cc5-421b-b0de-95f1e107c096</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Protocol.Consumer.Application\Protocol.Consumer.Application.csproj" />
+    <ProjectReference Include="..\Protocol.Consumer.Domain\Protocol.Consumer.Domain.csproj" />
+    <ProjectReference Include="..\Protocol.Consumer.Infrastructure\Protocol.Consumer.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

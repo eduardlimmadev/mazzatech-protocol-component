@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Protocol.Consumer.Service\Protocol.Consumer.Service.csproj" />
+    <ProjectReference Include="..\Protocol.Consumer.Infrastructure\Protocol.Consumer.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

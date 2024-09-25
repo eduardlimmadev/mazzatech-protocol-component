@@ -1,0 +1,11 @@
+[
+    {
+        "_id": { "$oid": "65111e2f9f23456789012345" },
+        "FileId": "e2f4c007-3a4f-44ef-bf52-7d2d5075b8b6",
+        "Name": "example",
+        "Extension": "jpg",
+        "MimeType": "image/jpeg",
+        "Path": "/app/Photos/example.jpg",
+        "CreatedAt": { "$date": "2024-09-25T12:00:00Z" }
+    }
+]

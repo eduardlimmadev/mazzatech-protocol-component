@@ -1,0 +1,15 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /app
+
+COPY src/File/ src/File/
+COPY ["NuGet.config", "src/File/Protocol.FileService.Presentation/"]
+
+RUN dotnet restore "src/File/Protocol.FileService.Presentation/Protocol.FileService.Presentation.csproj"
+RUN dotnet publish -c Release "src/File/Protocol.FileService.Presentation/Protocol.FileService.Presentation.csproj" -o publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "Protocol.FileService.Presentation.dll"]

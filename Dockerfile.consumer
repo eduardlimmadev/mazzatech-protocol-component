@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /app
+
+COPY src/Consumer/ src/Consumer/
+COPY ["NuGet.config", "src/Consumer/Protocol.Consumer.Worker/"]
+COPY ["src/Shared/", "src/Shared/"]
+
+RUN dotnet restore "src/Consumer/Protocol.Consumer.Worker/Protocol.Consumer.Worker.csproj"
+RUN dotnet publish -c Release "src/Consumer/Protocol.Consumer.Worker/Protocol.Consumer.Worker.csproj" -o publish --no-restore
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "Protocol.Consumer.Worker.dll"]
