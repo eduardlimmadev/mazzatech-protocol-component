@@ -9,7 +9,7 @@ Este projeto consiste na construção de um componente para recepção e process
 
 - API de Consulta: Uma API que permite a consulta de protocolos armazenados com base no número do protocolo, CPF ou RG, garantindo que a aplicação esteja protegida por um mecanismo de autenticação.
 
-![Modelo arquitetural](images/Mazzatech_0.jpg)
+![Modelo arquitetural](images/Architecture.gif)
 
 ## Documentação da API
 
