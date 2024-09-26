@@ -3,6 +3,7 @@ namespace Protocol.Shared.Domain.Dtos
 {
     public class ProtocolDto
     {
+        public ulong Id { get; set; }
         public long ProtocolNumber { get; set; }
         public int ViaNumber { get; set; }
         public string Cpf { get; set; }

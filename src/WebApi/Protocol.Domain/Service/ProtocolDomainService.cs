@@ -3,7 +3,7 @@ using Protocol.Domain.Interfaces;
 
 namespace Protocol.Domain.Service
 {
-    public class ProtocolDomainService
+    public class ProtocolDomainService : IProtocolDomainService
     {
         private readonly IProtocolRepository _protocolRepository;
 

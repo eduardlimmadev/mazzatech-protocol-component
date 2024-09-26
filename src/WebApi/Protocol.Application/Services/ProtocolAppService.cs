@@ -9,43 +9,21 @@ namespace Protocol.Application.Services
     public class ProtocolAppService : IProtocolAppService
     {
         private readonly IProtocolRepository _repository;
+        private readonly IProtocolDomainService _domainService;
         private readonly IValidator<ProtocolDto> _validator;
 
-        public ProtocolAppService(IProtocolRepository repository, IValidator<ProtocolDto> validator)
+        public ProtocolAppService(IProtocolRepository repository, IProtocolDomainService domainService, IValidator<ProtocolDto> validator)
         {
             _repository = repository;
+            _domainService = domainService;    
             _validator = validator;
         }
 
         public async Task<bool> CreateProtocolAsync(ProtocolDto protocolDto)
         {
-            var validationResult = _validator.Validate(protocolDto);
-            if (!validationResult.IsValid)
-            {
-                return false;
-            }
-
-            var exists = await _repository.ExistsByProtocolNumberAsync(protocolDto.ProtocolNumber);
-            if (exists)
-            {
-                return false;
-            }
-
-            var existsByRgAndVia = await _repository.ExistsByRgOrCpfAndViaAsync(protocolDto.Rg, protocolDto.ViaNumber);
-            if (existsByRgAndVia)
-            {
-                return false;
-            }
-
-            var existsByCpfAndVia = await _repository.ExistsByRgOrCpfAndViaAsync(protocolDto.Cpf, protocolDto.ViaNumber);
-            if (existsByCpfAndVia)
-            {
-                return false;
-            }
-
             var protocol = protocolDto.Adapt<Domain.Entities.Protocol>();
 
-            await _repository.AddAsync(protocol);
+            await _domainService.ValidateAndAddProtocolAsync(protocol);
             return true;
         }
 

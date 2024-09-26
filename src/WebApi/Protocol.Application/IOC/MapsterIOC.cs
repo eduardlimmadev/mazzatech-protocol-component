@@ -4,7 +4,7 @@ using Protocol.Shared.Domain.Dtos;
 
 namespace Protocol.Application.IOC
 {
-    public static class MapsterIOC
+    public class MapsterIOC
     {
         public static void RegisterMappings()
         {
@@ -15,6 +15,7 @@ namespace Protocol.Application.IOC
 
             TypeAdapterConfig<ProtocolDto, Domain.Entities.Protocol>
                 .NewConfig()
+                .Map(dest => dest.Id, src => src.Id)
                 .Map(dest => dest.ProtocolNumber, src => src.ProtocolNumber)
                 .Map(dest => dest.ViaNumber, src => src.ViaNumber)
                 .Map(dest => dest.Cpf, src => new Cpf(src.Cpf))

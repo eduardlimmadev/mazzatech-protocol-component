@@ -4,7 +4,7 @@ namespace Protocol.Domain.Entities
 {
     public class Protocol
     {
-        public Guid Id { get; private set; }
+        public ulong Id { get; private set; }
         public long ProtocolNumber { get; private set; }
         public int ViaNumber { get; private set; }
         public Cpf Cpf { get; private set; }
@@ -18,7 +18,6 @@ namespace Protocol.Domain.Entities
 
         public Protocol(long protocolNumber, int viaNumber, Cpf cpf, Rg rg, string name, string motherName, string fatherName, Guid photoId)
         {
-            Id = Guid.NewGuid();
             ProtocolNumber = protocolNumber;
             ViaNumber = viaNumber;
             Cpf = cpf ?? throw new ArgumentNullException(nameof(cpf));

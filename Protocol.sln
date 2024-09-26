@@ -73,6 +73,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InitMongo", "InitMongo", "{
 		init-mongo\mongo-init.sh = init-mongo\mongo-init.sh
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocol.WebApi", "src\WebApi\Protocol.WebApi\Protocol.WebApi.csproj", "{CCA23457-6AD9-4B80-B3E8-1BA12B923D5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,6 +173,10 @@ Global
 		{4528EFD4-C116-4787-B5C1-C4ADDBF803F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4528EFD4-C116-4787-B5C1-C4ADDBF803F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4528EFD4-C116-4787-B5C1-C4ADDBF803F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA23457-6AD9-4B80-B3E8-1BA12B923D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA23457-6AD9-4B80-B3E8-1BA12B923D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA23457-6AD9-4B80-B3E8-1BA12B923D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA23457-6AD9-4B80-B3E8-1BA12B923D5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -200,6 +206,7 @@ Global
 		{E2C22C09-3E6E-4DE0-AE14-4D9F416DBD7F} = {CAC28C1E-4E5D-438D-ADFA-5CFE79F7165C}
 		{4528EFD4-C116-4787-B5C1-C4ADDBF803F5} = {CAC28C1E-4E5D-438D-ADFA-5CFE79F7165C}
 		{A78A61A2-A6E0-41CA-A239-B3FA0566F716} = {6BB61B11-66BB-426C-B9D6-FC4F5F2B4CF4}
+		{CCA23457-6AD9-4B80-B3E8-1BA12B923D5D} = {D4604B50-8FA5-4271-A62B-045A96BBF023}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0215B7D-138E-4542-A7A2-8445D57A5E24}
